@@ -3,7 +3,7 @@ package com.springBajo8.springBajo8.service.impl;
 //import com.yoandypv.reactivestack.messages.domain.Message;
 //import com.yoandypv.reactivestack.messages.repository.MessageRepository;
 //import com.yoandypv.reactivestack.messages.service.MessageService;
-import com.springBajo8.springBajo8.domain.citasDTOReactiva;
+import com.springBajo8.springBajo8.models.CitasReactiva;
 import com.springBajo8.springBajo8.repository.IcitasReactivaRepository;
 import com.springBajo8.springBajo8.service.IcitasReactivaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,18 +12,18 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
-public class citasReactivaServiceImpl implements IcitasReactivaService {
+public class CitasReactivaServiceImpl implements IcitasReactivaService {
 
     @Autowired
     private IcitasReactivaRepository IcitasReactivaRepository;
 
     @Override
-    public Mono<citasDTOReactiva> save(citasDTOReactiva citasDTOReactiva) {
-        return this.IcitasReactivaRepository.save(citasDTOReactiva);
+    public Mono<CitasReactiva> save(CitasReactiva CitasReactiva) {
+        return this.IcitasReactivaRepository.save(CitasReactiva);
     }
 
     @Override
-    public Mono<citasDTOReactiva> delete(String id) {
+    public Mono<CitasReactiva> delete(String id) {
         return this.IcitasReactivaRepository
                 .findById(id)
                 .flatMap(p -> this.IcitasReactivaRepository.deleteById(p.getId()).thenReturn(p));
@@ -31,28 +31,28 @@ public class citasReactivaServiceImpl implements IcitasReactivaService {
     }
 
     @Override
-    public Mono<citasDTOReactiva> update(String id, citasDTOReactiva citasDTOReactiva) {
+    public Mono<CitasReactiva> update(String id, CitasReactiva CitasReactiva) {
         return this.IcitasReactivaRepository.findById(id)
-                .flatMap(citasDTOReactiva1 -> {
-                    citasDTOReactiva.setId(id);
-                    return save(citasDTOReactiva);
+                .flatMap(citasReactiva1 -> {
+                    CitasReactiva.setId(id);
+                    return save(CitasReactiva);
                 })
                 .switchIfEmpty(Mono.empty());
     }
 
     @Override
-    public Flux<citasDTOReactiva> findByIdPaciente(String idPaciente) {
+    public Flux<CitasReactiva> findByIdPaciente(String idPaciente) {
         return this.IcitasReactivaRepository.findByIdPaciente(idPaciente);
     }
 
 
     @Override
-    public Flux<citasDTOReactiva> findAll() {
+    public Flux<CitasReactiva> findAll() {
         return this.IcitasReactivaRepository.findAll();
     }
 
     @Override
-    public Mono<citasDTOReactiva> findById(String id) {
+    public Mono<CitasReactiva> findById(String id) {
         return this.IcitasReactivaRepository.findById(id);
     }
 }

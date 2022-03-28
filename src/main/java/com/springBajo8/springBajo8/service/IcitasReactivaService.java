@@ -1,20 +1,20 @@
 package com.springBajo8.springBajo8.service;
 
 //import com.yoandypv.reactivestack.messages.domain.Message;
-import com.springBajo8.springBajo8.domain.citasDTOReactiva;
+import com.springBajo8.springBajo8.models.CitasReactiva;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface IcitasReactivaService {
-    Mono<citasDTOReactiva> save(citasDTOReactiva citasDTOReactiva);
+    Mono<CitasReactiva> save(CitasReactiva CitasReactiva);
 
-    Mono<citasDTOReactiva> delete(String id);
+    Mono<CitasReactiva> delete(String id);
 
-    Mono<citasDTOReactiva> update(String id, citasDTOReactiva citasDTOReactiva);
+    Mono<CitasReactiva> update(String id, CitasReactiva CitasReactiva);
 
-    Flux<citasDTOReactiva> findByIdPaciente(String idPaciente);
+    Flux<CitasReactiva> findByIdPaciente(String idPaciente);
 
-    Flux<citasDTOReactiva> findAll();
+    Flux<CitasReactiva> findAll();
 
-    Mono<citasDTOReactiva> findById(String id);
+    Mono<CitasReactiva> findById(String id);
 }

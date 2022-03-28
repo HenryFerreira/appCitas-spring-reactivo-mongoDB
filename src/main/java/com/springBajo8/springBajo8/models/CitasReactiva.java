@@ -1,14 +1,13 @@
-package com.springBajo8.springBajo8.domain;
+package com.springBajo8.springBajo8.models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.UUID;
 
 @Document(collection = "citas")
-public class citasDTOReactiva {
+public class CitasReactiva {
 
     @Id
     private String id = UUID.randomUUID().toString().substring(0, 10);
