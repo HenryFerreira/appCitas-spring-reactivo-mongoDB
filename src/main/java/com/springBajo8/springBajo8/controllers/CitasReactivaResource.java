@@ -9,6 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.time.LocalDate;
+
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
 public class CitasReactivaResource {
@@ -53,6 +56,15 @@ public class CitasReactivaResource {
     @PutMapping("/cancelarCita/{idPaciente}/byidPaciente")
     private Flux<CitasReactiva> cancelarCitaByidPaciente(@PathVariable("idPaciente") String idPaciente) {
         return this.icitasReactivaService.cancelarCita(idPaciente);
+    }
+    //---------------------------------------------------------//
+
+    //---------------------------------------------------------//
+    //Consultar cita por fecha y hora
+    @GetMapping("/consultarFechaHora/{fecha}/{hora}")
+    private Flux<CitasReactiva> consultarFechaHora(@PathVariable("fecha") String fecha, @PathVariable("hora") String hora) {
+        LocalDate fechaParseada = LocalDate.parse(fecha);
+        return this.icitasReactivaService.consultarFechaYHora(fechaParseada, hora);
     }
     //---------------------------------------------------------//
 

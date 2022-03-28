@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
+
 @Service
 public class CitasReactivaServiceImpl implements IcitasReactivaService {
 
@@ -67,6 +69,16 @@ public class CitasReactivaServiceImpl implements IcitasReactivaService {
                     return save(entity);
                 })
                 .switchIfEmpty(Mono.empty());
+    }
+    //---------------------------------------------------------//
+
+    //---------------------------------------------------------//
+    //Consultar cita por fecha y hora
+    @Override
+    public Flux<CitasReactiva> consultarFechaYHora(LocalDate fecha, String hora) {
+        return this.IcitasReactivaRepository.findByFechaReservaCita(fecha)
+                .filter(cita -> cita.getHoraReservaCita().equals(hora))
+                .switchIfEmpty(Flux.empty());
     }
     //---------------------------------------------------------//
 }

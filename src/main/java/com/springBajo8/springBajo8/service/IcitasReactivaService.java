@@ -5,6 +5,8 @@ import com.springBajo8.springBajo8.models.CitasReactiva;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
+
 public interface IcitasReactivaService {
     Mono<CitasReactiva> save(CitasReactiva CitasReactiva);
 
@@ -23,4 +25,8 @@ public interface IcitasReactivaService {
     Flux<CitasReactiva> cancelarCita(String id);
     //---------------------------------------------------------//
 
+    //---------------------------------------------------------//
+    //Consultar cita por fecha y hora
+    Flux<CitasReactiva> consultarFechaYHora(LocalDate fecha, String hora);
+    //---------------------------------------------------------//
 }
