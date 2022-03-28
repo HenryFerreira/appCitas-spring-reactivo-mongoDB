@@ -17,4 +17,10 @@ public interface IcitasReactivaService {
     Flux<CitasReactiva> findAll();
 
     Mono<CitasReactiva> findById(String id);
+
+    //---------------------------------------------------------//
+    //Cancelar una cita de formal logica
+    Flux<CitasReactiva> cancelarCita(String id);
+    //---------------------------------------------------------//
+
 }

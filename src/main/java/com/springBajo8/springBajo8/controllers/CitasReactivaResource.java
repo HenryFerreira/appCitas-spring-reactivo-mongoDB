@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 public class CitasReactivaResource {
 
@@ -47,5 +47,13 @@ public class CitasReactivaResource {
     private Flux<CitasReactiva> findAll() {
         return this.icitasReactivaService.findAll();
     }
+
+    //---------------------------------------------------------//
+    //Cancelar una cita de formal logica
+    @PutMapping("/cancelarCita/{idPaciente}/byidPaciente")
+    private Flux<CitasReactiva> cancelarCitaByidPaciente(@PathVariable("idPaciente") String idPaciente) {
+        return this.icitasReactivaService.cancelarCita(idPaciente);
+    }
+    //---------------------------------------------------------//
 
 }
