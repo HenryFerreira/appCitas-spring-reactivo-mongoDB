@@ -31,6 +31,16 @@ public class CitasReactiva {
 
     private String estadoReservaCita;
 
+    //Constructor
+    public CitasReactiva(String idPaciente) {
+        this.idPaciente = idPaciente;
+    }
+
+    //Constructor por defecto
+    public CitasReactiva() {
+    }
+
+    //Getters y Setters---------------------------------------------
     public String getId() {
         return id;
     }
@@ -110,7 +120,25 @@ public class CitasReactiva {
     public void setTratamientosList(List<Padecimiento> tratamientosList) {
         this.tratamientosList = tratamientosList;
     }
+    //Getters y Setters---------------------------------------------
 
 
+    //toString
 
+
+    @Override
+    public String toString() {
+        return "CitasReactiva{" +
+                "id='" + id + '\'' +
+                ", idPaciente='" + idPaciente + '\'' +
+                ", nombrePaciente='" + nombrePaciente + '\'' +
+                ", apellidosPaciente='" + apellidosPaciente + '\'' +
+                ", nombreMedico='" + nombreMedico + '\'' +
+                ", apellidosMedico='" + apellidosMedico + '\'' +
+                ", fechaReservaCita=" + fechaReservaCita +
+                ", horaReservaCita='" + horaReservaCita + '\'' +
+                ", tratamientosList=" + tratamientosList +
+                ", estadoReservaCita='" + estadoReservaCita + '\'' +
+                '}';
+    }
 }
