@@ -29,4 +29,9 @@ public interface IcitasReactivaService {
     //Consultar cita por fecha y hora
     Flux<CitasReactiva> consultarFechaYHora(LocalDate fecha, String hora);
     //---------------------------------------------------------//
+
+    //---------------------------------------------------------//
+    //Consultar medico que lo atendera en su cita
+    Flux<CitasReactiva> consultarMedicoDePaciente(String id);
+    //---------------------------------------------------------//
 }

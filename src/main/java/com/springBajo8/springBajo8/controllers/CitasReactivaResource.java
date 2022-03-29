@@ -68,4 +68,13 @@ public class CitasReactivaResource {
     }
     //---------------------------------------------------------//
 
+    //---------------------------------------------------------//
+    //Consultar medico que lo atendera en su cita
+    @GetMapping("/consultarMedico/{idPaciente}/byidPaciente")
+    private Flux<CitasReactiva> consultarMedicoByIdPaciente(@PathVariable("idPaciente") String idPaciente) {
+        return this.icitasReactivaService.consultarMedicoDePaciente(idPaciente);
+    }
+    //---------------------------------------------------------//
+
+
 }

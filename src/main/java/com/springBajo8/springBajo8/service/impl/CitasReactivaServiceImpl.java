@@ -81,4 +81,20 @@ public class CitasReactivaServiceImpl implements IcitasReactivaService {
                 .switchIfEmpty(Flux.empty());
     }
     //---------------------------------------------------------//
+
+    //---------------------------------------------------------//
+    //Consultar medico que lo atendera en su cita
+    @Override
+    public Flux<CitasReactiva> consultarMedicoDePaciente(String id) {
+        return this.IcitasReactivaRepository.findByIdPaciente(id)
+                .flatMap(entity -> {
+                            CitasReactiva cita = new CitasReactiva();
+                            cita.setNombreMedico(entity.getNombreMedico());
+                            cita.setApellidosMedico(entity.getApellidosMedico());
+                            return Flux.just(cita);
+                        }
+                )
+                .switchIfEmpty(Mono.empty());
+    }
+    //---------------------------------------------------------//
 }
