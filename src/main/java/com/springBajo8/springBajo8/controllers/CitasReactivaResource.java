@@ -2,6 +2,7 @@ package com.springBajo8.springBajo8.controllers;
 
 
 import com.springBajo8.springBajo8.models.CitasReactiva;
+import com.springBajo8.springBajo8.models.Padecimiento;
 import com.springBajo8.springBajo8.service.IcitasReactivaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
@@ -76,5 +78,14 @@ public class CitasReactivaResource {
     }
     //---------------------------------------------------------//
 
+    //---------------------------------------------------------//
+    /* proponer una modificacion de la base de datos para contemplar los PADECIMIENTOS y
+    TRATAMIENTOS que a tenido cada paciente y a partir de este construir un EndPoint que permita
+    conocer todos los padecimientos de un paciente*/
+    @GetMapping("/consultarTratamiento/{idPaciente}/byidPaciente")
+    private Flux<List<Padecimiento>> consultarTratamientoByIdPaciente(@PathVariable("idPaciente") String idPaciente) {
+        return this.icitasReactivaService.consultarTratamientosYPadecimientos(idPaciente);
+    }
+    //---------------------------------------------------------//
 
 }

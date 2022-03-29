@@ -5,6 +5,7 @@ package com.springBajo8.springBajo8.service.impl;
 //import com.yoandypv.reactivestack.messages.service.MessageService;
 
 import com.springBajo8.springBajo8.models.CitasReactiva;
+import com.springBajo8.springBajo8.models.Padecimiento;
 import com.springBajo8.springBajo8.repository.IcitasReactivaRepository;
 import com.springBajo8.springBajo8.service.IcitasReactivaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class CitasReactivaServiceImpl implements IcitasReactivaService {
@@ -94,6 +96,18 @@ public class CitasReactivaServiceImpl implements IcitasReactivaService {
                             return Flux.just(cita);
                         }
                 )
+                .switchIfEmpty(Mono.empty());
+    }
+    //---------------------------------------------------------//
+
+    //---------------------------------------------------------//
+    /* proponer una modificacion de la base de datos para contemplar los PADECIMIENTOS y
+    TRATAMIENTOS que a tenido cada paciente y a partir de este construir un EndPoint que permita
+    conocer todos los padecimientos de un paciente*/
+    @Override
+    public Flux<List<Padecimiento>> consultarTratamientosYPadecimientos(String id) {
+        return this.IcitasReactivaRepository.findByIdPaciente(id)
+                .flatMap(cita -> Mono.just(cita.getTratamientosList()))
                 .switchIfEmpty(Mono.empty());
     }
     //---------------------------------------------------------//
